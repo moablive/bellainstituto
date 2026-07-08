@@ -1,0 +1,215 @@
+/* ======================================= */
+/* --- VARIÁVEIS GERAIS --- */
+/* ======================================= */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --primary-color: #d81b60; /* Magenta forte baseado na referência */
+    --primary-light: #fce4ec; /* Rosa claro para contrastes sutis */
+    --secondary-color: #6c757d;
+    --transition: all 0.3s ease;
+}
+
+/* ======================================= */
+/* --- GERAIS E FUNDO ANIMADO --- */
+/* ======================================= */
+body {
+    font-family: "Inter", sans-serif;
+    padding-top: 80px; /* Aumentado para acomodar a nova navbar branca */
+    scroll-behavior: smooth;
+    color: var(--text-color);
+    background-color: #fff;
+}
+
+.bg-gradient-custom,
+.bg-light-custom,
+.bg-dark {
+    background-color: transparent !important;
+}
+
+.section-heading {
+    font-weight: 800;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.section-heading::after {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background-color: var(--primary-color);
+    top: -15px; /* Linha rosa acima do título como na referência */
+    left: 20%;
+    border-radius: 2px;
+}
+
+/* ======================================= */
+/* --- UTILITIES ESPECIAIS --- */
+/* ======================================= */
+.text-primary-custom {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary-custom {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-primary-light {
+    background-color: var(--primary-light) !important;
+}
+
+.btn-primary-custom {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    padding: 10px 24px;
+    transition: var(--transition);
+}
+
+.btn-primary-custom:hover {
+    background-color: #ad144b;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(216, 27, 96, 0.3);
+}
+
+/* Efeitos de Hover Premium (Imagens) */
+.image-hover-zoom img {
+    transition: transform 0.5s ease;
+}
+.image-hover-zoom:hover img {
+    transform: scale(1.05);
+}
+
+/* Efeito de texto vazado (outline) da referência */
+.text-outline-stroke {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--primary-color);
+    text-transform: uppercase;
+}
+
+/* ======================================= */
+/* --- AJUSTES DO HEADER E FOOTER --- */
+/* ======================================= */
+.navbar {
+    background: #fff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    height: 80px;
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-size: 1.8rem;
+}
+
+.nav-link {
+    color: #495057 !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 10px;
+    transition: var(--transition);
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+.navbar-toggler {
+    filter: none;
+}
+
+.footer {
+    background: #fff !important;
+    color: #333 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ======================================= */
+/* --- EDUCATION / SERVICES CARDS --- */
+/* ======================================= */
+.edu-card-pro {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+    background: #fff;
+    border-radius: 18px;
+}
+
+.edu-card-pro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+.edu-border-warning { border-left: 6px solid var(--primary-color) !important; }
+.edu-border-success { border-left: 6px solid #f06292 !important; }
+
+.edu-school-badge {
+    min-width: 72px;
+    height: 72px;
+    padding: 0 14px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #343a40;
+    text-transform: uppercase;
+}
+
+.edu-school-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #495057;
+    margin-bottom: 0.25rem;
+}
+
+.edu-course-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #212529;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.edu-meta {
+    font-size: 0.96rem;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+/* ======================================= */
+/* --- CERTIFICADOS / GALLERY --- */
+/* ======================================= */
+.cert-card {
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+.cert-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(216, 27, 96, 0.15) !important;
+}
+
+.cert-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(216, 27, 96, 0.1);
+    color: var(--primary-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
