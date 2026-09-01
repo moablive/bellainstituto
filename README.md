@@ -38,6 +38,31 @@ Este projeto foi construído utilizando as seguintes ferramentas e tecnologias m
    ```
 4. O Vite iniciará o servidor, geralmente disponível em `http://localhost:5173`. Acesse no seu navegador preferido.
 
+## 🚀 Deploy em Produção
+
+O site roda em container no servidor próprio (`awlsrv`) e é publicado em
+`https://bellainstituto.com.br` por um túnel da Cloudflare. Saiu da hospedagem da
+Hostinger em 01/09/2026.
+
+```bash
+docker compose up -d --build
+```
+
+O `Dockerfile` é multi-stage — `npm ci && npm run build` no `node:22-alpine`, e só o
+`dist/` vai para o `nginx:alpine`. Não é preciso ter Node no host, e o `nginx.conf`
+cuida do fallback de SPA e do cache dos assets com hash.
+
+O container **não publica porta no host**: ele vive na rede `bellainstituto_net`, e
+quem chega da internet é o `bellainstituto_tunnel`, na mesma rede. Por isso a rede é
+`external: true` no compose e precisa existir antes:
+
+```bash
+docker network create bellainstituto_net
+```
+
+A configuração do túnel, os registros DNS e o passo a passo de recuperação estão no
+`README.md` do diretório acima (`BellaInstituto/`), junto da stack do cloudflared.
+
 ## 📂 Estrutura de Diretórios
 
 ```
@@ -50,7 +75,10 @@ bellainstituto/
 │   ├── main.js             # Ponto de entrada do Vue
 │   └── style.css           # Estilos globais, variáveis e efeitos hover
 ├── index.html              # Template HTML principal (imports CDN)
-└── package.json            # Dependências do projeto
+├── package.json            # Dependências do projeto
+├── Dockerfile              # Build da SPA + entrega estática por nginx
+├── nginx.conf              # SPA fallback e cache dos assets
+└── docker-compose.yml      # Serviço bellainstituto_web
 ```
 
 ---
