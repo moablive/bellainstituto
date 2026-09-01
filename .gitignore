@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Segredos — o valor real mora no .env, que nunca é versionado
+.env
+.env.*
+!.env.example

@@ -1,0 +1,20 @@
+name: bellainstituto
+
+services:
+  # Site institucional do Bella Instituto (bellainstituto.com.br).
+  # Sem portas publicadas: quem chega de fora é o bellainstituto_tunnel,
+  # que vive na mesma rede. Migrado da Hostinger em 01/09/2026.
+  bellainstituto_web:
+    container_name: bellainstituto_web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      bellainstituto_net:
+        aliases:
+          - bellainstituto-web
+
+networks:
+  bellainstituto_net:
+    external: true
