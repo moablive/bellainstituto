@@ -12,11 +12,18 @@ Este projeto foi construído utilizando as seguintes ferramentas e tecnologias m
   </a>
 </p>
 
+Instalado via `npm` (está no `package.json`):
+
 *   **Vue.js 3:** Framework reativo e componentizado.
 *   **Vite:** Ferramenta de build super rápida para desenvolvimento.
-*   **Bootstrap 5:** Estrutura de grid e utilitários de layout.
-*   **AOS (Animate On Scroll):** Animações suaves ativadas via scroll.
-*   **FontAwesome:** Ícones ricos e vetorizados.
+
+Carregado por **CDN**, direto no `index.html` — não passa pelo `npm install` nem pelo
+bundle do Vite, e por isso a página precisa de rede para renderizar com o visual certo:
+
+*   **Bootstrap 5:** Estrutura de grid e utilitários de layout (jsDelivr).
+*   **AOS (Animate On Scroll):** Animações suaves ativadas via scroll (unpkg).
+*   **FontAwesome 6:** Ícones ricos e vetorizados (cdnjs).
+*   **Inter:** Fonte do site (Google Fonts).
 
 ## 🌟 Funcionalidades Principais
 
@@ -60,8 +67,15 @@ quem chega da internet é o `bellainstituto_tunnel`, na mesma rede. Por isso a r
 docker network create bellainstituto_net
 ```
 
-A configuração do túnel, os registros DNS e o passo a passo de recuperação estão no
-`README.md` do diretório acima (`BellaInstituto/`), junto da stack do cloudflared.
+O `--build` não é opcional: sem ele o compose sobe a imagem antiga e a alteração não
+chega ao ar. O túnel não precisa ser reiniciado — ele resolve o alias do container a
+cada requisição.
+
+A configuração do túnel, os registros DNS e o passo a passo de recuperação ficam no
+repositório **privado** de infraestrutura (`moablive/bellainstituto-infra`), clonado
+no diretório acima (`BellaInstituto/`) junto da stack do cloudflared. Lá também está
+o `CLAUDE.md` com as convenções do projeto para agentes de IA — como os dois
+repositórios são aninhados, ele vale para este diretório também.
 
 ## 📂 Estrutura de Diretórios
 
@@ -75,8 +89,10 @@ bellainstituto/
 │   ├── main.js             # Ponto de entrada do Vue
 │   └── style.css           # Estilos globais, variáveis e efeitos hover
 ├── index.html              # Template HTML principal (imports CDN)
+├── vite.config.js          # Config do Vite (plugin Vue)
 ├── package.json            # Dependências do projeto
 ├── Dockerfile              # Build da SPA + entrega estática por nginx
+├── .dockerignore           # .git, node_modules e dist ficam fora do contexto
 ├── nginx.conf              # SPA fallback e cache dos assets
 └── docker-compose.yml      # Serviço bellainstituto_web
 ```
